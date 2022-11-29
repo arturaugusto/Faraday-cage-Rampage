@@ -1,7 +1,8 @@
 var seed = Date.now()
 function random () {
-  var x = Math.sin(.8765111159592828 + seed++) * 10000;
-  return x - Math.floor(x);
+  Math.random()
+  // var x = Math.sin(.8765111159592828 + seed++) * 10000;
+  // return x - Math.floor(x);
 }
 
 random = Math.random

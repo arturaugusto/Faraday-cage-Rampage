@@ -1,3 +1,11 @@
+const listener = new GamepadListener({button: {analog: false}});
+
+listener.on('gamepad:connected',  function (event) {
+  console.log('gamepad:connected')
+});
+
+
+
 //document.getElementById('hermitPlace').appendChild(PLAYER1.sprites.idleLeft[0])
 var INPUT = {
   moveLeft: null,
@@ -13,6 +21,9 @@ var INPUT = {
   mouseDownCount: 0,
   mouseDown: [0, 0, 0, 0, 0, 0, 0, 0, 0]
 };
+
+
+listener.start();
 
 var acceptKeyForNewGame = true
 var startNewLevel = function() {
@@ -46,6 +57,24 @@ var startNewLevel = function() {
   INPUT.mouseDownCount = 0
   INPUT.mouseDown = [0, 0, 0, 0, 0, 0, 0, 0, 0]
 }
+
+listener.on('gamepad:0:button',  function (event) {
+  // console.log(event.detail.button)
+  
+  let pressed = event.detail.pressed
+
+  if (event.detail.button === 14) {INPUT.moveLeft = pressed}
+  if (event.detail.button === 15) {INPUT.moveRight = pressed}
+  if (event.detail.button === 12) {INPUT.moveUp = pressed}
+  if (event.detail.button === 13) {INPUT.moveDown = pressed}
+
+  if (event.detail.button === 2) {INPUT.fireLeft = pressed}
+  if (event.detail.button === 1) {INPUT.fireRight = pressed}
+  if (event.detail.button === 3) {INPUT.fireUp = pressed}
+  if (event.detail.button === 0) {INPUT.fireDown = pressed}
+
+  
+});
 
 document.onkeydown = function (event) {
   if (acceptKeyForNewGame) {
